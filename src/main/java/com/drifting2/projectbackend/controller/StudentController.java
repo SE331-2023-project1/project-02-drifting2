@@ -54,7 +54,7 @@ public class StudentController {
         }
     }
 
-    @PostMapping("/students")
+    @PostMapping("/savestudent")
     public ResponseEntity<?> addStudent(@RequestBody Student Student){
         Student output = studentService.save(Student);
         return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
@@ -63,6 +63,16 @@ public class StudentController {
     @GetMapping("students/searchByStudentId")
     public ResponseEntity<?> getStudent(@RequestParam String id) {
         Student output = studentService.getStudent(id);
+        if (output != null){
+            return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
+        }else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
+        }
+    }
+
+    @GetMapping("students/searchByStudentFirstname")
+    public ResponseEntity<?> getStudentByFName(@RequestParam String firstname) {
+        Student output = studentService.getStudentByFName(firstname);
         if (output != null){
             return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
         }else {

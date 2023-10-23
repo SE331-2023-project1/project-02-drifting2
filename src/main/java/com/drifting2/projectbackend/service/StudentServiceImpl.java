@@ -57,4 +57,9 @@ public class StudentServiceImpl implements StudentService{
         return studentDao.getStudent(studentId);
     }
 
+    @Override
+    public Student getStudentByFName(String firstname) {
+        return studentDao.getStudentByFName(firstname);
+    }
+
 }

@@ -13,4 +13,6 @@ public interface StudentService {
     Student save(Student student);
     Page<Student> getStudents(String title, Pageable pageable);
     Student getStudent(String studentId);
+
+    Student getStudentByFName(String firstname);
 }

@@ -11,5 +11,7 @@ public interface StudentDao {
     Student getStudent(Long id);
     Student save(Student student);
     Student getStudent(String studentId);
+
+    Student getStudentByFName(String firstname);
     Page<Student> getStudents(String name, Pageable page);
 }

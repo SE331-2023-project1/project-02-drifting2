@@ -45,4 +45,9 @@ public class StudentDaoDBImpl implements StudentDao{
     public Student getStudent(String studentId) {
         return studentRepository.findByStudentId(studentId);
     }
+
+    @Override
+    public Student getStudentByFName(String firstname) {
+        return studentRepository.findByFirstname(firstname);
+    }
 }
