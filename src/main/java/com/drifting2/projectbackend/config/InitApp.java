@@ -1,7 +1,11 @@
 package com.drifting2.projectbackend.config;
 
+import com.drifting2.projectbackend.security.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import jakarta.transaction.Transactional;
@@ -15,18 +19,33 @@ import com.drifting2.projectbackend.repository.CommentMessageRepository;
 import com.drifting2.projectbackend.repository.StudentRepository;
 import com.drifting2.projectbackend.repository.TeacherRepository;
 
+import com.drifting2.projectbackend.security.user.User;
 @Component
 @RequiredArgsConstructor
 public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
+    @Autowired
+
     final StudentRepository studentRepository;
     final TeacherRepository teacherRepository;
     final CommentMessageRepository commentMessageRepository;
     final CommentHistoryRepository commentHistoryRepository;
+    final UserRepository userRepository;
 
     @Override
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        System.out.println("Init started.");
+
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setFirstname("admin");
+        admin.setLastname("admin");
+        admin.setPassword(encoder.encode("admin"));
+        admin.setEmail("admin@admin.com");
+        userRepository.save(admin);
+
+
 
         Teacher t1, t2;
         t1 = teacherRepository.save(Teacher.builder()
@@ -90,7 +109,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         );
         msg3.setFrom(his1);
         his1.getHistory().add(msg3);
-        
+
         tempSt = studentRepository.save(Student.builder()
             .studentId("622115502")
             .firstname("Tom")
@@ -119,7 +138,12 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         tempSt.setAdvisor(t2);
         t2.getAdvisee().add(tempSt);
 
-        System.out.println("Init Finished.");
+
+
+
+//        System.out.println("Init Finished.");
+
+
     }
     
 }

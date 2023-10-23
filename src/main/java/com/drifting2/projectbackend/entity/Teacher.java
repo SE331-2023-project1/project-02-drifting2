@@ -30,6 +30,7 @@ public class Teacher {
     String firstname;
     String surname;
     String department;
+    String profileImage;
     @Builder.Default
     @OneToMany(mappedBy = "advisor")
     List<Student> advisee = new ArrayList<>();;

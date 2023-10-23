@@ -18,6 +18,7 @@ public class StudentDTO {
     String firstname;
     String surname;
     String department;
+    String profileImage;
     StudentTeacherDTO advisor;
     List<String> images;
 }

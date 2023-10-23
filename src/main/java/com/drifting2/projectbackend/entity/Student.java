@@ -29,6 +29,7 @@ public class Student {
     String firstname;
     String surname;
     String department;
+    String profileImage;
     @ManyToOne
     Teacher advisor;
     @ElementCollection
