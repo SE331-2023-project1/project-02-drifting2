@@ -1,5 +1,6 @@
 package com.drifting2.projectbackend.config;
 
+import com.drifting2.projectbackend.security.user.Role;
 import com.drifting2.projectbackend.security.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -20,6 +21,9 @@ import com.drifting2.projectbackend.repository.StudentRepository;
 import com.drifting2.projectbackend.repository.TeacherRepository;
 
 import com.drifting2.projectbackend.security.user.User;
+
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
@@ -42,6 +46,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         admin.setFirstname("admin");
         admin.setLastname("admin");
         admin.setPassword(encoder.encode("admin"));
+        admin.setRoles(List.of(Role.ROLE_ADMIN));
         admin.setEmail("admin@admin.com");
         userRepository.save(admin);
 
@@ -54,6 +59,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
             .surname("Momonogi")
             .academicPosition("Lecture")
             .department("CAMT")
+            .images(List.of("https://images.unsplash.com/photo-1687360441387-0179af118555?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=654&q=80"))
             .build()
         );
         t2 = teacherRepository.save(Teacher.builder()
@@ -62,6 +68,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
             .surname("はな")
             .academicPosition("Lecture")
             .department("CAMT")
+            .images(List.of("https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=846&q=80"))
             .build()
         );
 
@@ -71,6 +78,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
             .firstname("Alice")
             .surname("Li")
             .department("CAMT")
+          .images(List.of("https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
             .build()
         );
         tempSt.setAdvisor(t1);
@@ -78,6 +86,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         CommentHistory his1 = commentHistoryRepository.save(CommentHistory.builder()
             .adviseeId(tempSt.getId())
             .advisorId(t1.getId())
+
             .build()
         );
         CommentHistory his2 = commentHistoryRepository.save(CommentHistory.builder()
@@ -115,6 +124,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
             .firstname("Tom")
             .surname("X")
             .department("CAMT")
+                .images(List.of("https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
             .build()
         );
         tempSt.setAdvisor(t1);
@@ -124,6 +134,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
             .firstname("Jerry")
             .surname("Shu")
             .department("CAMT")
+                .images(List.of("https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
             .build()
         );
         tempSt.setAdvisor(t2);
@@ -133,6 +144,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
             .firstname("Xukun")
             .surname("Cai")
             .department("CAMT")
+                .images(List.of("https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
             .build()
         );
         tempSt.setAdvisor(t2);
