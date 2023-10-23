@@ -60,4 +60,13 @@ public class StudentController {
         return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
     }
 
+    @GetMapping("students/searchByStudentId")
+    public ResponseEntity<?> getStudent(@RequestParam String id) {
+        Student output = studentService.getStudent(id);
+        if (output != null){
+            return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(output));
+        }else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
+        }
+    }
 }

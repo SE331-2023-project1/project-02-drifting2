@@ -60,4 +60,14 @@ public class TeacherController {
         return ResponseEntity.ok(LabMapper.INSTANCE.getTeacherDTO(output));
     }
 
+    @GetMapping("advisors/searchByTeacherFirstname")
+    public ResponseEntity<?> getTeacher(@RequestParam String firstname) {
+        Teacher output = teacherService.getTeachers(firstname);
+        if (output != null){
+            return ResponseEntity.ok(LabMapper.INSTANCE.getTeacherDTO(output));
+        }else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given firstname is not found");
+        }
+    }
+
 }

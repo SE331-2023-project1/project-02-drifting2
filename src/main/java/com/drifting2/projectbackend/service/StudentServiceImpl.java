@@ -52,4 +52,9 @@ public class StudentServiceImpl implements StudentService{
         return studentDao.getStudents(title,pageable);
     }
 
+    @Override
+    public Student getStudent(String studentId) {
+        return studentDao.getStudent(studentId);
+    }
+
 }

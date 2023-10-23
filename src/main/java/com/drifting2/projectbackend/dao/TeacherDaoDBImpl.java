@@ -47,4 +47,9 @@ public class TeacherDaoDBImpl implements TeacherDao{
         return teacherRepository.findByAcademicPositionIgnoreCaseContainingOrFirstnameIgnoreCaseContainingOrSurnameIgnoreCaseContaining(title, title, title, page);
     }
 
+    @Override
+    public Teacher getTeachers(String firstname) {
+        return teacherRepository.findByFirstname(firstname);
+    }
+
 }
