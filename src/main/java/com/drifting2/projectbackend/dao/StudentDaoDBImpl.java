@@ -41,4 +41,8 @@ public class StudentDaoDBImpl implements StudentDao{
         return studentRepository.findByStudentIdContainingOrFirstnameIgnoreCaseContainingOrSurnameIgnoreCaseContaining(title, title, title, page);
     }
 
+    @Override
+    public Student getStudent(String studentId) {
+        return studentRepository.findByStudentId(studentId);
+    }
 }

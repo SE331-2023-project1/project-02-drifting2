@@ -11,5 +11,5 @@ import java.util.List;
 public interface TeacherRepository extends JpaRepository<Teacher,Long> {
     List<Teacher> findAll();
     Page<Teacher> findByAcademicPositionIgnoreCaseContainingOrFirstnameIgnoreCaseContainingOrSurnameIgnoreCaseContaining(String academicPosition, String firstname, String surname, Pageable pageRequest);
-    
+    Teacher findByFirstname(String firstname);
 }

@@ -11,4 +11,6 @@ public interface TeacherService {
     Teacher getTeacher(Long id);
     Teacher save(Teacher teacher);
     Page<Teacher> getTeachers(String title, Pageable pageable);
+
+    Teacher getTeachers(String firstname);
 }

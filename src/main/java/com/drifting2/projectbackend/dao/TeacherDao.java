@@ -14,4 +14,5 @@ public interface TeacherDao {
     Teacher save(Teacher teacher);
     Optional<Teacher> findById(Long id);
     Page<Teacher> getTeachers(String name, Pageable page);
+    Teacher getTeachers(String firstname);
 }

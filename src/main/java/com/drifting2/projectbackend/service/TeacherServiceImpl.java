@@ -40,5 +40,9 @@ public class TeacherServiceImpl implements TeacherService{
     public Page<Teacher> getTeachers(String title, Pageable pageable) {
         return TeacherDao.getTeachers(title,pageable);
     }
+    @Override
+    public Teacher getTeachers(String firstname) {
+        return TeacherDao.getTeachers(firstname);
+    }
 
 }
